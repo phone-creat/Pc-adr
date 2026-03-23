@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cloud Phone</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+</head>
+
+<body>
+  <h2>📱 Cloud Phone</h2>
+
+  <button onclick="sendCommand('open_game')">Mở game</button>
+  <button onclick="sendCommand('tap')">Tap</button>
+  <button onclick="sendCommand('home')">Home</button>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "API_KEY",
+      authDomain: "PROJECT.firebaseapp.com",
+      databaseURL: "https://PROJECT-default-rtdb.firebaseio.com",
+      projectId: "PROJECT"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    function sendCommand(cmd){
+      db.ref("phone/command").set(cmd);
+    }
+  </script>
+</body>
+</html>
